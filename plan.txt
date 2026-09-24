@@ -1,0 +1,211 @@
+UI/UX Design System & Solution Architecture Document
+Project Name: EduPulse Next-Gen School ERP
+
+Design Paradigm: Dark Glassmorphism / Modern Neomorphic Visual Hierarchy
+
+Document Version: 1.0.0
+
+Target Platform: Web Desktop / Tablet / Mobile (Responsive Web Application)
+
+1. Vision & Core Objectives
+EduPulse is an all-in-one Cloud ERP designed to streamline school administrative, academic, financial, and operational tasks. The interface adopts a high-contrast dark glassmorphic design language to improve visual hierarchy, reduce cognitive fatigue for power users, and deliver real-time visual feedback across complex workflows.
+
+Design Principles
+Contextual Role Adaptation: The navigation, action tools, and visual widgets dynamically reshape based on whether the logged-in user is an Admin, Accountant, Teacher, Student/Parent, or Librarian.
+
+Glassmorphism Visual Hierarchy: Uses layered translucency, subtle white glowing borders, background blur filters (backdrop-filter: blur(16px)), and radial background ambient gradients to build depth without clutter.
+
+Data-Dense Yet Legible: Heavy data tables (e.g., Ledger, Attendance, Student Records) utilize collapsible filters, sticky section headers, status badges, and inline quick actions.
+
+2. Global Design Tokens & Palette
+Color System
+CSS
+:root {
+  /* Surface & Canvas Backgrounds */
+  --bg-canvas: #0f172a;        /* Deep Slate Navy Canvas */
+  --glass-card: rgba(30, 41, 59, 0.65); /* Translucent Card Background */
+  --glass-border: rgba(255, 255, 255, 0.12); /* Subtle Outer Glow Stroke */
+  --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+
+  /* Primary Brand Accents */
+  --primary-indigo: #6366f1;   /* Primary Actions / CTAs */
+  --primary-pink: #ec4899;     /* Secondary Brand Glow / Accents */
+  --accent-purple: #a855f7;    /* Active Navigation Highlights */
+  
+  /* System State Accents */
+  --state-success: #10b981;   /* Paid, Present, Approved */
+  --state-warning: #f59e0b;   /* Pending, Due Soon, Overdue */
+  --state-danger: #ef4444;    /* Unpaid, Rejected, Terminated */
+  --state-info: #06b6d4;      /* Active Loans, Announcements */
+
+  /* Form Elements */
+  --input-bg: rgba(15, 23, 42, 0.6);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --input-focus: rgba(99, 102, 241, 0.6);
+
+  /* Typography */
+  --text-primary: #f8fafc;     /* Headings, Pure White Focus Text */
+  --text-secondary: #e2e8f0;   /* Standard Body Text */
+  --text-muted: #94a3b8;       /* Labels, Secondary Indicators */
+  --text-link: #a5b4fc;        /* Interactive Hyperlinks */
+}
+Typography Hierarchy
+Font Family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif
+
+Display / Hero Titles: 32px | Bold (700) | Letter Spacing: -0.02em
+
+Section Headings (H1): 24px | SemiBold (600) | Letter Spacing: -0.01em
+
+Card Titles (H2): 18px | SemiBold (600)
+
+Body Text: 14px | Regular (400) / Medium (500) | Line Height: 1.5
+
+Labels & Metadata: 12px | Medium (500) / Bold (700) | Letter Spacing: 0.05em (Uppercase)
+
+3. Modular Architecture & Core System Features
+                            ┌────────────────────────────────────────┐
+                            │        EduPulse Core Dashboard         │
+                            └───────────────────┬────────────────────┘
+                                                │
+         ┌──────────────────┬───────────────────┼───────────────────┬──────────────────┐
+         │                  │                   │                   │                  │
+┌────────┴─────────┐ ┌──────┴──────────┐ ┌──────┴──────────┐ ┌──────┴──────────┐ ┌─────┴───────────┐
+│ Accounts & Fees  │ │ Admissions & Reg│ │ Teachers & Staff│ │ Classes & Exams │ │ Admin System    │
+└──────────────────┘ └─────────────────┘ └─────────────────┘ └─────────────────┘ └─────────────────┘
+4. Comprehensive Section-by-Section Design Specifications
+Module 1: Accounts & Financial Management
+Primary Purpose
+Manage student tuition fees, faculty payroll, institutional invoices, ledger entries, and financial audit logs.
+
+Key UI Components & Layout
+Executive Metric Cards (Row 1):
+
+Total Fee Revenue Collected (vs. Pending Dues with visual progress fill bar)
+
+Faculty & Staff Monthly Payroll Total
+
+Operational Expenses & Invoices
+
+Net Operating Balance
+
+Fee Collection & Structure Manager:
+
+Filter Bar: Multi-select dropdowns for Academic Year, Grade/Class, Payment Status (Paid, Pending, Overdue, Partial).
+
+Data Grid Table: Student Name, Admission No, Grade, Total Fee, Paid Amount, Due Date, Status Badge, Quick Actions (Print Receipt, Send Reminder SMS/Email, Adjust Discount).
+
+Modal Workflows:
+
+Record Payment Modal: Invoice lookup, payment mode selection (Credit Card, Net Banking, Campus SSO, Cash/Cheque), and auto-generated receipt generator with QR validation code.
+
+Payroll Disbursement Panel: Faculty base salary breakdown, allowances, tax deductions, attendance penalties, and bulk transfer triggers.
+
+Module 2: Admissions & Student Registration
+Primary Purpose
+Handle applicant pipelines, document verification, enrollment workflows, and student profile management.
+
+Key UI Components & Layout
+Kanban Admission Pipeline:
+
+Visual drag-and-drop columns: Application Submitted → Entrance Exam Scheduled → Interview Round → Document Verification → Fees Paid & Enrolled.
+
+Student Profile View:
+
+Header Summary Card: Avatar image, full name, Roll Number, Assigned Section, Blood Group, Guardian Contact, Emergency Trigger button.
+
+Tabbed Interface:
+
+Tab 1: Personal & Guardian Details
+
+Tab 2: Academic History & Transcript
+
+Tab 3: Attendance Records & Leave Logs
+
+Tab 4: Fee Ledger & Receipts
+
+Tab 5: Library & Asset Activity
+
+Module 3: Faculty & Staff Management
+Primary Purpose
+Maintain teacher profiles, substitution management, class allocation, and performance reviews.
+
+Key UI Components & Layout
+Teacher Roster & Workload Dashboard:
+
+Visual card view/table of all faculty members showing department, designated subject, assigned weekly lecture hours, and class teacher responsibility.
+
+Dynamic Substitution Engine:
+
+Real-time grid highlighting absent teachers for the day.
+
+Smart Suggestion Panel: System identifies free faculty members during specific periods based on subject expertise and automatically suggests substitution assignments with a single click.
+
+Module 4: Academics, Classes & Exam Engine
+Primary Purpose
+Manage timetable schedules, gradebooks, syllabus progression, and examination schedules.
+
+Key UI Components & Layout
+Interactive Weekly Timetable Grid:
+
+Time slot matrix (8:00 AM – 3:30 PM across Monday–Friday).
+
+Color-coded period pills (e.g., Indigo for Science, Emerald for Math, Pink for Humanities).
+
+Gradebook & Mark Entry Sheet:
+
+Batch mark entry view with real-time class average, median calculation, and automatic grade scale assignment (A+, A, B, F).
+
+Report card generator exportable to signed PDF.
+
+Module 5: Admin & System Governance
+Primary Purpose
+System configuration, RBAC (Role-Based Access Control), security audit logs, and global announcements.
+
+Key UI Components & Layout
+RBAC Control Matrix:
+
+Grid toggles defining exact permissions per role:
+
+Permission / Capability	Super Admin	School Accountant	Class Teacher	Student / Parent	Librarian
+Manage Fees & Collection	Full Access	Full Access	Read-Only	Read-Only	No Access
+Approve Admissions	Full Access	Read-Only	No Access	No Access	No Access
+Enter Grades & Attendance	Full Access	No Access	Full Access	Read-Only	No Access
+Issue / Return Books	Full Access	No Access	Read-Only	Read-Only	Full Access
+System Security & Audit	Full Access	No Access	No Access	No Access	No Access
+System Audit Trail:
+
+Log table tracking timestamped user actions (User ID, Action Executed, IP Address, Module Affected).
+
+5. User Interaction Flow Chart
+Below is the user operational lifecycle flow for key workflows across the system:
+
+[User Login] ──► [SSO / Email + Role Authentication] ──► [Dynamic Role Dashboard]
+                                                                  │
+      ┌──────────────────┬──────────────────┬─────────────────────┼────────────────────┐
+      ▼                  ▼                  ▼                     ▼                    ▼
+[Admin View]      [Accounts View]    [Teacher View]        [Student View]      [Librarian View]
+  ├── System Settings  ├── Fee Collection ├── Attendance Register ├── Grade Cards       ├── Book Issue/Return
+  ├── Access Control   ├── Invoices       ├── Mark Entry Sheet    ├── Class Schedule    ├── Catalog Search
+  └── Audit Trail      └── Payroll        └── Substitution Tool   └── Book Borrowings   └── Overdue Tracking
+6. Implementation Guidelines for Developers
+Glassmorphism CSS Rules:
+
+Always apply backdrop-filter: blur(16px) on floating panels and modal overlays.
+
+Maintain translucent backdrops (rgba(30, 41, 59, 0.65) for cards, rgba(15, 23, 42, 0.6) for inputs).
+
+Use 1px solid rgba(255, 255, 255, 0.12) borders to create realistic reflective glass edges.
+
+Accessibility Standards:
+
+All primary interactive text must meet WCAG AAA contrast ratios (#ffffff or #f8fafc on dark surfaces).
+
+Inputs must render clear focus indicator rings (box-shadow: 0 0 0 2px var(--input-focus)).
+
+Responsive Breakpoints:
+
+Desktop (Large): > 1280px (Full 2-column content grid with left sidebar layout).
+
+Tablet / Laptop: 768px – 1279px (Collapsible sidebar, single/double column hybrid grid).
+
+Mobile: < 767px (Bottom mobile navigation bar, stacked full-width cards).

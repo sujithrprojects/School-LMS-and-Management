@@ -1,0 +1,26 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="--logo-color: #6366f1;">
+  <defs>
+    <linearGradient id="studentGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="var(--logo-color, #6366f1)"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="studentGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Glowing Background Circle -->
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#studentGrad)" fill-opacity="0.15" stroke="url(#studentGrad)" stroke-width="1.5"/>
+
+  <!-- Cap Diamond -->
+  <path d="M32 18L50 27L32 36L14 27L32 18Z" fill="url(#studentGrad)" filter="url(#studentGlow)"/>
+  
+  <!-- Cap Skull Base & Tassel -->
+  <path d="M20 31.5V40C20 42.5 25.3726 45 32 45C38.6274 45 44 42.5 44 40V31.5" stroke="url(#studentGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M46 29V39.5C46 41 47 42 48 42" stroke="#f8fafc" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="48" cy="43.5" r="1.5" fill="#f8fafc"/>
+  
+  <!-- Sparkle Accent -->
+  <path d="M32 12V15M32 12L30.5 13.5M32 12L33.5 13.5" stroke="#f8fafc" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

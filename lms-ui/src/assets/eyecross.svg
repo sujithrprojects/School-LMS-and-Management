@@ -1,0 +1,8 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="--icon-color: #94a3b8;">
+  <!-- Eye Outline with gaps for slash -->
+  <path d="M10.73 5.073C11.148 5.025 11.57 5 12 5C16.664 5 20.3999 7.90264 22 12C21.23 13.966 19.832 15.62 18.06 16.74M2 12C2.77 10.034 4.168 8.38 5.94 7.26C4.47 8.42 3.28 9.99 2.5 11.77" stroke="var(--icon-color, #94a3b8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Pupil Arch -->
+  <path d="M9.88 9.88C9.33 10.43 9 11.18 9 12C9 13.66 10.34 15 12 15C12.82 15 13.57 14.67 14.12 14.12" stroke="var(--icon-color, #94a3b8)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Diagonal Strike/Slash -->
+  <path d="M3 3L21 21" stroke="var(--icon-color, #94a3b8)" stroke-width="2" stroke-linecap="round"/>
+</svg>
