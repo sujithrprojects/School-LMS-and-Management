@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     
     #My apps
     'accounts',
-    'profiles'
+    'profiles',
+    'academics'
 ]
 
 MIDDLEWARE = [

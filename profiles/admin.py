@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (StudentProfile,EmployeeProfile,ParentProfile)
+from .models import (StudentProfile,EmployeeProfile,ParentProfile,StudentGuardian)
 # Register your models here.
 
 @admin.register(StudentProfile)
@@ -40,3 +40,25 @@ class ParentProfileAdmin(admin.ModelAdmin):
         'user__username',
         'user__email'
     )
+@admin.register(StudentGuardian)
+class StudentGuardianAdmin(admin.ModelAdmin):
+    list_display=(
+        "student",
+        "parent",
+        "relationship",
+        "is_primary"
+    )
+    
+    list_filter=(
+        "relationship",
+        "is_primary"
+    )
+    search_fields=[
+        "student__admission_number",
+        "student__user__first_name",
+        "student__user__last_name",
+        "parent__user__first_name",
+        "parent__user__last_name",
+        "parent__user__email"
+        
+    ]

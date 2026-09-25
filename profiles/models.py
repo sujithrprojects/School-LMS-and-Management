@@ -93,3 +93,38 @@ class EmployeeProfile(models.Model):
     def __str__(self):
         return self.employee_id
     
+class StudentGuardian(models.Model):
+    RELATIONSHIP_CHOICES=[
+        ('FATHER','Father'),
+        ('MOTHER','Mother'),
+        ('GUARDIAN','Guardian'),
+        ('OTHER','Other')
+    ]
+    id=models.UUIDField(
+                primary_key=True,
+                default=uuid.uuid4,
+                editable=False
+                
+            )
+    student=models.ForeignKey(
+        StudentProfile,
+        on_delete=models.CASCADE,
+        related_name='students'
+    )
+    parent=models.ForeignKey(
+        ParentProfile,
+        on_delete=models.CASCADE,
+        related_name='guardians')
+    relationship=models.CharField(max_length=30,choices=RELATIONSHIP_CHOICES)
+    is_primary=models.BooleanField(default=False)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(
+                fields=['student','parent'],
+                name='unique_student_parent'
+            ),
+            
+        ]
+    def __str__(self):
+        return f"{self.parent}-{self.student}"
+    
